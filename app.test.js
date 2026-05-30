@@ -1,5 +1,4 @@
-function testHola() {
+test('Buscar la palabra HOLA en el mensaje', () => {
     const mensaje = "Buscar en esta cadena la palabra HOLA";
-    if (!mensaje.includes("HOLA")) {
-    }
-}
+    expect(mensaje).toContain("HOLA");
+});
