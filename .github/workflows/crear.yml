@@ -15,38 +15,28 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-      with:
-        # Asegura que se descargue todo el historial (opcional)
-        fetch-depth: 0
-        
-    - name: Set up Node.js
+    - name: Set up Node.js 18
       uses: actions/setup-node@v4
       with:
         node-version: "18"
-        
     - name: Install dependencies
       run: |
-        npm install
-
+        npm ci
     - name: Ejecutar la app
       run: |
         node app.js
-        
     - name: Test with Jest
-      run: npm test
-        
+      run: |
+        npx jest
     - name: simulacion del deploy
       run: |
         echo "simular que se esta desplegando la aplicacion en un servidor"
-
     - name: construir la imagen de docker
       run: |
         docker build -t ghcr.io/19ramirez/node-app:latest .
-
     - name: Login en GitHub Container Registry
       run: |
         echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-
     - name: publicar la imagen
       run: |
         docker push ghcr.io/19ramirez/node-app:latest
