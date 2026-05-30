@@ -1,0 +1,3 @@
+descargar las dependencias en consola: npm install
+el packgase aparece como : node-app 
+en docker image aparece como: node-app
