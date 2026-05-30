@@ -15,10 +15,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Set up Node.js 18
-      uses: actions/setup-node@v3
+      with:
+        # Asegura que se descargue todo el historial (opcional)
+        fetch-depth: 0
+        
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
       with:
         node-version: "18"
+        
     - name: Install dependencies
       run: |
         npm install
